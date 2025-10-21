@@ -6,6 +6,7 @@ from abc import ABC, abstractmethod
 class Banco:
     
     def __init__(self, nome, localizacao, agencia):
+        
         # Atributos principais do banco
         self.__nome = nome
         self.__localizacao = localizacao
@@ -35,11 +36,30 @@ class Banco:
 class Cliente: # Classe pasa gerenciar as ações do cliente
     pass
 
-class Operacoes_Financeiras: # Interface de padronização para operações financeiras
-    pass
+class Operacoes_Financeiras(ABC): # Interface de padronização para operações financeiras
+
+    @abstractmethod
+    def depositar(self, valor:float):
+        pass
+
+    @abstractmethod
+    def sacar(self, valor:float):
+        pass
+
+    @abstractmethod
+    def transferencia(self, destino, valor:float):
+        pass
+    
 
 class Conta: # Classe abstrata para gerenciar a conta corrente e poupança
-    pass
+    def __init__(self, id_cliente, nome, cpf, senha, email):
+        
+        self.__id_cliente - id_cliente
+        self.__nome = nome
+        self.__cpf = cpf
+        self.__senha = senha
+        self.__email = email
+        
 
 class Conta_Corrente(Conta, Operacoes_Financeiras): # Conta corrente que herda de Conta e Operacoes_Financeiras
     pass
@@ -48,5 +68,6 @@ class Conta_Poupanca(Conta, Operacoes_Financeiras): # Conta corrente que herda d
     pass
 
 class Extrato: # classe que "cuidara" do extrato
-    pass
+    
+
 
