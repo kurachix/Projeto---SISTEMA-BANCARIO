@@ -15,6 +15,7 @@ def espera_terminal(): # Função para deixar uma espera de 3 segundos no termin
 
 def menu_principal(): # Função que contêm o conteudo básico do menu
 
+
     limpar_terminal()
 
     print( 30 * "-" )

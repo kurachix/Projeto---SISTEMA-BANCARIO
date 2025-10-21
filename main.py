@@ -1,7 +1,9 @@
 # Arquivo para estrutura principal do projeto
 
+from classes import *
 from functions import * # Importar as funções auxiliares e as bibliotecas necessárias
 
+banco = Banco("Banco SPX", "Jundiai-SP", "Agencia - 0001")
 
 while True:
 
