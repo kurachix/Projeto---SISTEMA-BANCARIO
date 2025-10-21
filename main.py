@@ -1,7 +1,7 @@
 # ---------------------------------------------------------------------------------------------------------------- #
 # Arquivo para estrutura principal do projeto
 
-from classes import *
+from classes import * # importa todas as classes para a main
 from functions import * # Importar as funções auxiliares e as bibliotecas necessárias
 
 banco = Banco("Banco SPX", "Jundiai-SP", "Agencia - 0001") # Instancia os atributos da classe Cliente
@@ -33,7 +33,7 @@ while True: # inicia um loop controlado para forçar o usuario a realizar o logi
 
         case 2: # case Cadastrar usuario
             pass
-        
+
         case 3: # case para sair do software
 
             limpar_terminal() # limpa o terminal
@@ -69,54 +69,54 @@ if cliente_logado == True: # antes de prosseguir para a proxima parte do softwar
             
             case 1: # case Realizar saque
                 
-                limpar_terminal()
+                limpar_terminal() # limpar o terminal
                 print("Você escolheu: Realizar saque")
-                espera_terminal()
+                espera_terminal() # pausa o terminal por 3 segundos
                 
             case 2: # case Realizar deposito
                 
-                limpar_terminal()
+                limpar_terminal() # limpa o terminal
                 print("Você escolheu: Realizar depósito")
-                espera_terminal()
+                espera_terminal() # pausa o terminal por 3 segundos
 
             case 3: # case Consultar saldo
                 
-                limpar_terminal()
+                limpar_terminal() # limpa o terminal
                 print("Você escolheu: Consultar saldo")
-                espera_terminal()
+                espera_terminal() # pausa o terminal por 3 segundos
 
             case 4: # case Consultar extrato
                 
-                limpar_terminal()
+                limpar_terminal() # limpa o terminal
                 print("Você escolheu: Consultar extrato")
-                espera_terminal()
+                espera_terminal() # pausa o terminal por 3 segundos
 
             case 5: # case Alterar as informações da conta
                 
-                limpar_terminal()
+                limpar_terminal() # limpa o terminal 
                 print("Você escolheu: Alterar informações da conta")
-                espera_terminal()
+                espera_terminal() # pausa o temrinal por 3 segundos
 
             case 6: # case Sair da conta
                 
-                limpar_terminal()
+                limpar_terminal() # limpa o terminal
                 print("Saindo da conta...")
-                espera_terminal()
+                espera_terminal() # pausa o temrianl por 3 segundos
 
             case 7: # case Finalizar o software
 
-                limpar_terminal()
+                limpar_terminal() # limpa o terminal
                 print("Encerrando o software... Até logo!")
-                espera_terminal()
+                espera_terminal() # pausa o terminal por 3 segundos
 
                 break # o break vai finalizar o software quebrando o loop do while True.
 
 
             case _: # case para opções invalidas
 
-                limpar_terminal()
+                limpar_terminal() # limpa o terminal
                 print("Opção inválida. Tente novamente!")
-                espera_terminal()
+                espera_terminal() # pausa o terminal por 3 segundos
 
 # ---------------------------------------------------------------------------------------------------------------- #
 
