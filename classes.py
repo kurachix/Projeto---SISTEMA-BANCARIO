@@ -35,8 +35,7 @@ class Cliente: # classe que vai servir como representação de um cliente do ban
         return self.__cpf
     
 class Conta:
-    def __init__(self,):
-        pass
+    pass
 
 class Extrato:
     pass
