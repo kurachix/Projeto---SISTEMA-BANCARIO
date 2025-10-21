@@ -1,13 +1,18 @@
 # Arquivo para armazenar funções auxiliares do projeto
 
+import time
 import os
 
 def limpar_terminal(): # Função para limpar o terminal
     
     os.system("cls")
 
+def espera_terminal(): # Função para deixar uma espera de 3 segundos no terminal, usando a biblioteca time()
 
-def menu_principal():
+    time.sleep(3)
+
+
+def menu_principal(): # Função que contêm o conteudo básico do menu
 
     limpar_terminal()
 
@@ -23,5 +28,9 @@ def menu_principal():
     print("5 - Alterar informações da conta")
     print("6 - Sair da conta")
     print("7 - Sair do software")
-    
+
+    print( 30 * "-" )
+
+
+
 
