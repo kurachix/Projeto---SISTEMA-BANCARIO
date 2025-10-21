@@ -1,5 +1,6 @@
 # Arquivo para armazenar funções auxiliares do projeto
 
+from abc import ABC, abstractmethod
 import time
 import os
 

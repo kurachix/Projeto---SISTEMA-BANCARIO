@@ -1,11 +1,41 @@
 # Arquivo para armazenar as classes do projeto
 
+from functions import time, os, ABC, abstractmethod
+
+# Classe que representa o banco 
 class Banco:
     
     def __init__(self, nome, localizacao, agencia):
-        self.nome = nome
-        self.localizacao = localizacao
-        self.agencia = agencia
+        # Atributos principais do banco
+        self.__nome = nome
+        self.__localizacao = localizacao
+        self.__agencia = agencia
+
+        # Lista que armazena todos os clientes cadastrados
+        self.__clientes = []
+
+
+class Cliente: # classe que vai servir como representação de um cliente do banco.
+
+    # Atributos privados
+    def __init__(self, nome, cpf, senha):
+        self.__nome = nome
+        self.__cpf = cpf
+        self.__senha = senha
+
+    # método para verificar se a senha esta correta
+    def verificar_senha(self, senha):
+        return self.__senha == senha
+
+    # Getters
+    def get_nome(self):
+        return self.__nome
+
+    def get_cpf(self):
+        return self.__cpf
+
+    
+        
 
 
     
