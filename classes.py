@@ -14,6 +14,24 @@ class Banco:
         # Lista que armazena todos os clientes cadastrados
         self.__clientes = []
 
+        # Metódos Getters
+
+    def get_nome(self):
+        # retorna o nome do banco
+        return self.__nome
+
+    def get_localizacao(self):
+        # retonra a localização do banco
+        return self.__localizacao
+
+    def get_agencia(self):
+        # retorna o numero da agencia
+        return self.__agencia
+
+    def get_clientes(self):
+        # retorna a lista de clientes
+        return self.__clientes
+
 class Cliente: # Classe pasa gerenciar as ações do cliente
     pass
 
