@@ -35,12 +35,17 @@ class Cliente: # classe que vai servir como representação de um cliente do ban
         return self.__cpf
     
 class Conta:
-    pass
+    def __init__(self,):
+        pass
 
 class Extrato:
     pass
 
-    
+class ContaCorrente(Conta):
+    pass
+
+class ContaPoupança(Conta):
+    pass   
         
 
 
