@@ -14,18 +14,21 @@ class Banco:
         # Lista que armazena todos os clientes cadastrados
         self.__clientes = []
 
-class Cliente:
+class Cliente: # Classe pasa gerenciar as ações do cliente
     pass
 
-class Conta:
+class Operacoes_Financeiras: # Interface de padronização para operações financeiras
     pass
 
-class Conta_Corrente(Conta):
+class Conta: # Classe abstrata para gerenciar a conta corrente e poupança
     pass
 
-class Conta_Poupanca(Conta):
+class Conta_Corrente(Conta, Operacoes_Financeiras): # Conta corrente que herda de Conta e Operacoes_Financeiras
     pass
 
-class Extrato:
+class Conta_Poupanca(Conta, Operacoes_Financeiras): # Conta corrente que herda de Conta e Operacoes_Financeiras
+    pass
+
+class Extrato: # classe que "cuidara" do extrato
     pass
 
