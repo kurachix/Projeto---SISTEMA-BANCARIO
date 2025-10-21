@@ -72,8 +72,16 @@ def cadastrar_cliente(Banco):
 
 
 def login_cliente():
+
+    limpar_terminal()
+    
+    print( 50 * "-")
+    print("Realize seu Login para prosseguir!!!".center(50))
+    print( 50 * "-")
+
     cpf = input("CPF: ")
     senha = input("Senha: ")
+
     return Banco.login(cpf, senha)
 
 # ---------------------------------------------------------------------------------------------------------------- #
@@ -98,6 +106,23 @@ def menu_principal(): # Função que contêm o conteudo básico do menu
 
     print("")
     print( 30 * "-" )
+
+def menu_login(): # Função que contêm o conteudo basico de login
+
+    limpar_terminal()
+
+    print( 30 * "-" )
+    print("Seja bem-vindo ao Banco SPX".center(30))
+    print("Realize o login para prosseguir".center(30))
+    print( 30 * "-" )
+
+    print("\n1 - Realizar Login")
+    print("2 - Realizar cadastro")
+
+    print("")
+    print( 30 * "-" )
+
+
 
 
 
