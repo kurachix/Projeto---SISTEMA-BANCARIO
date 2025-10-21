@@ -36,7 +36,19 @@ while True:
             pass
         case 3:
             # Sair do software
-            break
+
+            limpar_terminal()
+
+            print("Encerrando o software... Até logo!") 
+
+            espera_terminal()
+            
+            break # o break vai finalizar o software quebrando o loop do while True.
+
+        case _:
+            limpar_terminal()
+            print("Opção inválida. Tente novamente!")
+            espera_terminal()
 
 if cliente_logado == True:
     while True:
@@ -97,8 +109,8 @@ if cliente_logado == True:
                 print("Encerrando o software... Até logo!")
                 espera_terminal()
 
-                limpar_terminal()
                 break # o break vai finalizar o software quebrando o loop do while True.
+
 
             case _:
 
