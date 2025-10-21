@@ -33,6 +33,12 @@ class Cliente: # classe que vai servir como representação de um cliente do ban
 
     def get_cpf(self):
         return self.__cpf
+    
+class Conta:
+    pass
+
+class Extrato:
+    pass
 
     
         
