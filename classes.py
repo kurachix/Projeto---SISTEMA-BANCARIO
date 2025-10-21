@@ -13,3 +13,19 @@ class Banco:
 
         # Lista que armazena todos os clientes cadastrados
         self.__clientes = []
+
+class Cliente:
+    pass
+
+class Conta:
+    pass
+
+class Conta_Corrente(Conta):
+    pass
+
+class Conta_Poupanca(Conta):
+    pass
+
+class Extrato:
+    pass
+
