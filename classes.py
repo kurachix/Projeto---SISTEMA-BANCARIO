@@ -1,6 +1,6 @@
 # Arquivo para armazenar as classes do projeto
 
-from functions import time, os, ABC, abstractmethod
+from abc import ABC, abstractmethod
 
 # Classe que representa o banco 
 class Banco:
