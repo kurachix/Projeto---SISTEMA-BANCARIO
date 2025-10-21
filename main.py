@@ -1,3 +1,4 @@
+# ---------------------------------------------------------------------------------------------------------------- #
 # Arquivo para estrutura principal do projeto
 
 from classes import *
@@ -6,6 +7,10 @@ from functions import * # Importar as funções auxiliares e as bibliotecas nece
 banco = Banco("Banco SPX", "Jundiai-SP", "Agencia - 0001")
 
 cliente_logado = False
+
+tela_inicio()
+
+# ---------------------------------------------------------------------------------------------------------------- #
 
 while True:
 
@@ -16,7 +21,8 @@ while True:
     except ValueError: # aqui é tratado o erro para o programa nao travaar
     
         limpar_terminal()
-        print("Escolha Inválida!!!\n Por favor, atente-se em adicionar apenas números.")
+        print("Escolha Inválida!!!\nPor favor, atente-se em adicionar apenas números.")
+        espera_terminal()
 
         continue # Volta para o começo do loop
 
@@ -42,7 +48,7 @@ if cliente_logado == True:
         except ValueError: # aqui tratamos esse erro para o programa não travar
             
             limpar_terminal()
-            print("Escolha Inválida!!!\n Por favor, atente-se em adicionar apenas números.")
+            print("Escolha Inválida!!!\nPor favor, atente-se em adicionar apenas números.")
             espera_terminal()
 
             continue # volta para o começo de loop do while True
@@ -99,4 +105,6 @@ if cliente_logado == True:
                 limpar_terminal()
                 print("Opção inválida. Tente novamente!")
                 espera_terminal()
+
+# ---------------------------------------------------------------------------------------------------------------- #
 
