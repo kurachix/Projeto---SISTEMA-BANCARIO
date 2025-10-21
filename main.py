@@ -7,7 +7,15 @@ while True:
 
     menu_principal()
 
-    escolha_usuario = int(input("\nEscolha uma opção!\n->"))
+    try:    # Tratamento de erro, caso o usuário adicione uma string no lugar do numero inteiro.
+        escolha_usuario = int(input("\nEscolha uma opção!\n->"))
+    except ValueError: # aqui tratamos esse erro para o programa não travar
+        
+        limpar_terminal()
+        print("Escolha Inválida!!!\n Por favor, atente-se em adicionar apenas números.")
+        espera_terminal()
+
+        continue # volta para o começo de loop do while True
 
     match escolha_usuario:
         
@@ -54,7 +62,7 @@ while True:
             espera_terminal()
 
             limpar_terminal()
-            break
+            break # o break vai finalizar o software quebrando o loop do while True.
 
         case _:
 

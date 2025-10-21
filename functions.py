@@ -29,6 +29,7 @@ def menu_principal(): # Função que contêm o conteudo básico do menu
     print("6 - Sair da conta")
     print("7 - Sair do software")
 
+    print("")
     print( 30 * "-" )
 
 
