@@ -98,7 +98,7 @@ def tela_inicio():
     print("\nBem-vindo ao Banco SPX!")
     print("O seu banco digital de confiança.\n")
     
-    # Pequena animação de carregamento
+    # animação de carregamento
     print("Carregando", end="")
     for _ in range(9):
         print(".", end="", flush=True)
