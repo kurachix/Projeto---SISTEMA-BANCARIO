@@ -86,6 +86,25 @@ def login_cliente():
 
 # ---------------------------------------------------------------------------------------------------------------- #
 
+
+def tela_inicio():
+
+    limpar_terminal()
+
+        # Cabeçalho do banco
+    print("="*50)
+    print("BANCO SPX".center(50))
+    print("="*50)
+    print("\nBem-vindo ao Banco SPX!")
+    print("O seu banco digital de confiança.\n")
+    
+    # Pequena animação de carregamento
+    print("Carregando", end="")
+    for _ in range(9):
+        print(".", end="", flush=True)
+        time.sleep(0.5)
+    print("\n")
+
 def menu_principal(): # Função que contêm o conteudo básico do menu
 
 
@@ -118,6 +137,7 @@ def menu_login(): # Função que contêm o conteudo basico de login
 
     print("\n1 - Realizar Login")
     print("2 - Realizar cadastro")
+    print("3- Sair do software")
 
     print("")
     print( 30 * "-" )
