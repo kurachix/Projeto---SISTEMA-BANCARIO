@@ -92,24 +92,61 @@ def cadastrar_cliente(banco: Banco):
 # ---------------------------------------------------------------------------------------------------------------- #
 
 def login_cliente(banco: Banco):
-    """Função para realizar o login de um cliente"""
+    """Função para login do cliente"""
+
     limpar_terminal()
     print("=== LOGIN ===\n")
-    cpf = input("CPF: ").strip() #.strip retirar os espaços em branco
-    senha = input("Senha: ").strip()
 
-    # Verifica nos clientes do banco
+    cpf = input("Digite seu CPF: ").strip()
+    senha = input("Digite sua senha: ").strip()
+
+    # Procura cliente
+    cliente_logado = None
     for cliente in banco.get_clientes():
         if cliente.getCpf() == cpf and cliente.getSenha() == senha:
-            limpar_terminal()
-            print(f"Bem-vindo de volta, {cliente.getNome()}!")
-            espera_terminal()
-            return cliente
+            cliente_logado = cliente
+            break
+
+    if not cliente_logado:
+        limpar_terminal()
+        print("CPF ou senha incorretos!")
+        espera_terminal()
+        return None
+
+    # Se o cliente tem mais de uma conta, pergunta qual ele quer acessar
+    contas = cliente_logado._Cliente__contas
+    if len(contas) > 1:
+        limpar_terminal()
+        print(f"Bem-vindo de volta, {cliente_logado.getNome()}!\n")
+        print("Você possui mais de uma conta. Escolha qual deseja acessar:\n")
+
+        for i, conta in enumerate(contas, start=1):
+            tipo = "Conta Corrente" if "CC" in conta.getIdConta() else "Conta Poupança"
+            print(f"{i} - {tipo} ({conta.getIdConta()})")
+
+        while True:
+            try:
+                escolha = int(input("\n--> "))
+                if 1 <= escolha <= len(contas):
+                    conta_escolhida = contas[escolha - 1]
+                    limpar_terminal()
+                    print(f"Acessando {conta_escolhida.getIdConta()}...\n")
+                    espera_terminal()
+                    break
+                else:
+                    print("Opção inválida! Tente novamente.")
+            except ValueError:
+                print("Entrada inválida! Digite apenas números.")
+    else:
+        conta_escolhida = contas[0]
+
+    # Armazena qual conta o cliente escolheu (útil para o menu principal)
+    cliente_logado.conta_ativa = conta_escolhida
 
     limpar_terminal()
-    print(" CPF ou senha incorretos.")
+    print(f"✅ Login realizado com sucesso! Bem-vindo(a), {cliente_logado.getNome()}!")
     espera_terminal()
-    return None
+    return cliente_logado
 
 # ---------------------------------------------------------------------------------------------------------------- #
 # Telas e Menus
