@@ -62,7 +62,11 @@ class Cliente: # Classe pasa gerenciar as ações do cliente
         self.__cpf = cpf
 
     def setSenha(self, senha):
-        self.__senha = senha 
+        self.__senha = senha
+    
+    def adicionar_conta(self,conta):
+        if conta not in self.__contas:
+            self.__contas.append(conta)
 
 
 class Operacoes_Financeiras(ABC): # Interface de padronização para operações financeiras
@@ -80,26 +84,24 @@ class Operacoes_Financeiras(ABC): # Interface de padronização para operações
         pass
     
 
-class Conta: # Classe abstrata para gerenciar a conta corrente e poupança
-    def __init__(self, id_cliente, nome, cpf, senha, email):
-        
-        self.__id_cliente = id_cliente
-        self.__nome = nome
-        self.__cpf = cpf
-        self.__senha = senha
-        self.__email = email
+class Conta(Operacoes_Financeiras, ABC): # Classe abstrata para gerenciar a conta corrente e poupança
+    def __init__(self, id_conta : str, cliente: Cliente):
+        self.__id_conta = id_conta
+        self.__cliente = cliente
+        self._saldo = 0.0
+        self.__extrato = Extrato()
 
-    def getNome(self):
-        return self.__nome
+    def getIdConta(self):
+        return self.__id_conta
     
-    def getCpf(self):
-        return self.__cpf
+    def getCliente(self):
+        return self.__cliente
     
-    def getSenha(self):
-        return self.__senha
+    def getSaldo(self):
+        return self._saldo
     
-    def getEmail(self):
-        return self.__email 
+    def getExtrato(self):
+        return self.__extrato 
     
     def setNome(self, nome):
         self.__nome = nome
