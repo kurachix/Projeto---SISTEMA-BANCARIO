@@ -134,22 +134,35 @@ class Conta_Corrente(Conta): # Conta corrente que herda de Conta.
         self.getExtrato().adicionar_transacao(
             f"Transferencia para {destino.getCliente().getNome()}", - valor)
 
-class Conta_Poupanca(Conta, Operacoes_Financeiras): # Conta corrente que herda de Conta e Operacoes_Financeiras (Classe abstrata)
-    def __init__(self, id_cliente, nome, cpf, senha, email, saldo_poupanca, depositar, sacar, transferencia):
-        super().__init__(id_cliente, nome, cpf, senha, email, depositar, sacar, transferencia)
-        self.__saldo_poupanca = saldo_poupanca
+class Conta_Poupanca(Conta): # Conta corrente que herda de Conta.
+    SaldoMinimoSaque = 100.0 #Saldo minimo para fazer saque, pedido pelo nosso professor carlin
+
+    def __init__(self, id_conta: str, cliente: Cliente):
+        super().__init__(id_conta, cliente)
     
-    def sacar(self, valor):
-        pass
+    def sacar(self, valor: float):
+        if valor <= 0:
+            raise ValueError("Transação Inválida!")
+        if (self._saldo - valor) < Conta_Poupanca.SaldoMinimoSaque:
+            raise ValueError("Infelizmente, o seu saldo nao atinge o valor minimo de saque de R$100,00.")
+        self._saldo -= valor
+        self.getExtrato().adicionar_transacao("Saque -", - valor)
 
-    def depositar(self, valor):
-        pass
+    def depositar(self, valor: float):
+        if valor > 0:
+            self._saldo += valor
+            self.getExtrato().adicionar_transacao("Depósito -", valor)
+        else:
+            raise ValueError("Valor de deposito invalido!")
 
-    def transferencia(self, destino, valor):
-        pass
+    def transferencia(self, destino, valor : float):
+        if valor <= 0 or (self._saldo - valor) < Conta_Poupanca.SaldoMinimoSaque:
+            raise ValueError("Transação Inválida")
+        self.sacar(valor)
+        destino.depositar(valor)
+        self.getExtrato().adicionar_transacao(
+            f"Transferencia para {destino.getCliente().getNome()}", -valor)
 
-    def getSaldoPoupanca(self):
-        return self.__saldo_poupanca
 
 class Extrato: # classe que vai gerenciar o extrato
     def __init__(self):
