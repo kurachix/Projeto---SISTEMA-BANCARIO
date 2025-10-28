@@ -167,17 +167,18 @@ while True:
                     conta_origem = cliente_logado._Cliente__contas[0]
 
                     # Busca cliente destino
-                    cliente_destino = None
-                    for c in banco.get_clientes():
-                        if c.getCpf() == cpf_destino:
-                            cliente_destino = c
-                            break
+                    cliente_destino = None  # inicializa a variável para armazenar o cliente de destino
+                    for c in banco.get_clientes():  # percorre a lista de clientes cadastrados no banco
+                        if c.getCpf() == cpf_destino:  # verifica se o cpf do cliente atual é igual ao informado
+                            cliente_destino = c  # se for, guarda o cliente encontrado
+                            break  # interrompe o loop pois o cliente já foi localizado
 
-                    if cliente_destino is None:
+                    if cliente_destino is None: # caso nenhum cliente tenha sido encontrado com o cpf informado
                         limpar_terminal()
                         print("Cliente destinatário não encontrado.")
                         espera_terminal()
-                        continue
+                        continue # volta para o menu principal sem executar o restante do código
+
 
                     conta_destino = cliente_destino._Cliente__contas[0]
                     conta_origem.transferir(conta_destino, valor)
