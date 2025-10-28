@@ -197,7 +197,7 @@ def login_cliente(banco: Banco):
     cliente_logado.conta_ativa = conta_escolhida
 
     limpar_terminal()
-    print(f"✅ Login realizado com sucesso! Bem-vindo(a), {cliente_logado.getNome()}!")
+    print(f" Login realizado com sucesso! Bem-vindo(a), {cliente_logado.getNome()}!")
     espera_terminal()
     return cliente_logado
 
