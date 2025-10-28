@@ -5,7 +5,7 @@ from abc import ABC, abstractmethod
 # Classe que representa o banco 
 class Banco:
     
-    def __init__(self, nome, localizacao, agencia):
+    def __init__(self, nome: str, localizacao : str, agencia : str):
         
         # Atributos principais do banco
         self.__nome = nome
