@@ -111,6 +111,15 @@ class Conta_Corrente(Conta, Operacoes_Financeiras): # Conta corrente que herda d
         super().__init__(id_cliente, nome, cpf, senha, email, depositar, sacar, transferencia)
         self.__saldo_corrente = saldo_corrente
 
+    def sacar(self, valor):
+        pass
+
+    def depositar(self, valor):
+        pass
+
+    def transferencia(self, destino, valor):
+        pass
+
     def getSaldoCorrente(self):
         return self.__saldo_corrente
 
@@ -118,6 +127,15 @@ class Conta_Poupanca(Conta, Operacoes_Financeiras): # Conta corrente que herda d
     def __init__(self, id_cliente, nome, cpf, senha, email, saldo_poupanca, depositar, sacar, transferencia):
         super().__init__(id_cliente, nome, cpf, senha, email, depositar, sacar, transferencia)
         self.__saldo_poupanca = saldo_poupanca
+    
+    def sacar(self, valor):
+        pass
+
+    def depositar(self, valor):
+        pass
+
+    def transferencia(self, destino, valor):
+        pass
 
     def getSaldoPoupanca(self):
         return self.__saldo_poupanca
