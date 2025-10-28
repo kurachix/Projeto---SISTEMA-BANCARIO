@@ -86,10 +86,21 @@ class Conta: # Classe abstrata para gerenciar a conta corrente e poupança
         
 
 class Conta_Corrente(Conta, Operacoes_Financeiras): # Conta corrente que herda de Conta e Operacoes_Financeiras (Classe abstrata)
-    pass
+    def __init__(self, id_cliente, nome, cpf, senha, email, saldo_corrente, depositar, sacar, transferencia):
+        super().__init__(id_cliente, nome, cpf, senha, email, depositar, sacar, transferencia)
+        self.__saldo_corrente = saldo_corrente
+
+    def getSaldoCorrente(self):
+        return self.__saldo_corrente
 
 class Conta_Poupanca(Conta, Operacoes_Financeiras): # Conta corrente que herda de Conta e Operacoes_Financeiras (Classe abstrata)
-    pass
+    def __init__(self, id_cliente, nome, cpf, senha, email, saldo_poupanca, depositar, sacar, transferencia):
+        super().__init__(id_cliente, nome, cpf, senha, email, depositar, sacar, transferencia)
+        self.__saldo_poupanca = saldo_poupanca
+
+    def getSaldoPoupanca(self):
+        return self.__saldo_poupanca
 
 class Extrato: # classe que vai gerenciar o extrato
-    pass
+    def __init__(self):
+        pass
