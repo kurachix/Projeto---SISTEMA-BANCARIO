@@ -32,6 +32,11 @@ class Banco:
     def get_clientes(self):
         # retorna a lista de clientes
         return self.__clientes
+    
+        # Métodos principais
+
+    def adicionar_cliente(self, cliente):
+        self.__clientes.append(cliente)
 
 class Cliente: # Classe pasa gerenciar as ações do cliente
     pass
@@ -58,6 +63,7 @@ class Conta: # Classe abstrata para gerenciar a conta corrente e poupança
         self.__nome = nome
         self.__cpf = cpf
         self.__senha = senha
+
         self.__email = email
         
 
@@ -68,6 +74,4 @@ class Conta_Poupanca(Conta, Operacoes_Financeiras): # Conta corrente que herda d
     pass
 
 class Extrato: # classe que "cuidara" do extrato
-    
-
-
+    pass
