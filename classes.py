@@ -55,6 +55,9 @@ class Cliente: # Classe pasa gerenciar as ações do cliente
     def getSenha(self):
         return self.__senha
     
+    def getContas(self):
+        return self.__contas
+    
     def setNome(self, nome):
         self.__nome = nome
 
@@ -80,7 +83,7 @@ class Operacoes_Financeiras(ABC): # Interface de padronização para operações
         pass
 
     @abstractmethod
-    def transferencia(self, destino, valor:float):
+    def transferir(self, destino, valor:float):
         pass
     
 
@@ -126,13 +129,18 @@ class Conta_Corrente(Conta): # Conta corrente que herda de Conta.
             #Força um erro, porque nao faz sentido depositar valor negativo ou zero
             raise ValueError("Valor de depósito inválido.") 
         
-    def transferencia(self, destino, valor : float):
-        if valor <= 0 or valor > self._saldo:
-            raise ValueError("Não foi possivel concluir essa transação pois ela é Inválida!")
-        self.sacar(valor)
-        destino.depositar(valor)
-        self.getExtrato().adicionar_transacao(
-            f"Transferencia para {destino.getCliente().getNome()}", - valor)
+    def transferir(self, conta_destino, valor):
+        if valor <= 0:
+            raise ValueError("Valor inválido para transferência.")
+        if valor > self._saldo:
+            raise ValueError("Saldo insuficiente para transferência.")
+
+        self._saldo -= valor
+        conta_destino.depositar(valor)
+        self.getExtrato().adicionar_transacao(f"Transferência enviada -", -valor)
+        conta_destino.getExtrato().adicionar_transacao(f"Transferência recebida -", valor)
+
+
 
 class Conta_Poupanca(Conta): # Conta corrente que herda de Conta.
     SaldoMinimoSaque = 100.0 #Saldo minimo para fazer saque, pedido pelo nosso professor carlin
@@ -155,13 +163,18 @@ class Conta_Poupanca(Conta): # Conta corrente que herda de Conta.
         else:
             raise ValueError("Valor de deposito invalido!")
 
-    def transferencia(self, destino, valor : float):
-        if valor <= 0 or (self._saldo - valor) < Conta_Poupanca.SaldoMinimoSaque:
-            raise ValueError("Transação Inválida")
-        self.sacar(valor)
-        destino.depositar(valor)
-        self.getExtrato().adicionar_transacao(
-            f"Transferencia para {destino.getCliente().getNome()}", -valor)
+    def transferir(self, conta_destino, valor):
+        if valor <= 0:
+            raise ValueError("Valor inválido para transferência.")
+        if valor > self.__saldo:
+            raise ValueError("Saldo insuficiente para transferência.")
+
+        self.__saldo -= valor
+        conta_destino.depositar(valor)
+        self.getExtrato().adicionar_transacao(f"Transferência enviada -", -valor)
+        conta_destino.getExtrato().adicionar_transacao(f"Transferência recebida -", valor)
+
+
 
 
 class Extrato: # classe que vai gerenciar o extrato
