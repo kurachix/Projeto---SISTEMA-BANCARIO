@@ -13,7 +13,7 @@ Um **sistema bancário simples, desenvolvido para fins educacionais** desenvolvi
 5. [🧩 Relacionamentos Entre Classes](#-relacionamentos-entre-classes)
 6. [⚙️ Aplicação dos Conceitos de POO](#️-aplicação-dos-conceitos-de-poo)
 7. [🖥️ Execução do Programa](#️-execução-do-programa)
-8. [👨‍💻 Autores](#-autores)
+8. [👨‍💻 Participantes do Projeto](#-participantes-do-projeto)
 
 ---
 
