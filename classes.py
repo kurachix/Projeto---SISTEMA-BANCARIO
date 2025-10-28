@@ -32,12 +32,19 @@ class Banco:
     def get_clientes(self):
         # retorna a lista de clientes
         return self.__clientes
+    
+    #Metodos de gerenciamento de clientes
+    def adicionar_cliente(self, cliente):
+        if cliente not in self.__clientes:
+            self.__clientes.append(cliente)
+    
 
 class Cliente: # Classe pasa gerenciar as ações do cliente
     def __init__(self, nome : str, cpf : str, senha : str):
         self.__nome = nome
         self.__cpf = cpf
         self.__senha = senha
+        self.__contas = [] #Associação - cliente pode ter varias contas
 
     def getNome(self):
         return self.__nome
