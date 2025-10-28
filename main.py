@@ -167,7 +167,7 @@ while True:
 
                     # Busca cliente destino
                     cliente_destino = None
-                    for c in banco.getClientes():
+                    for c in banco.get_clientes():
                         if c.getCpf() == cpf_destino:
                             cliente_destino = c
                             break
