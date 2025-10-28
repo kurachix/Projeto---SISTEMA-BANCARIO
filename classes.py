@@ -85,11 +85,11 @@ class Conta: # Classe abstrata para gerenciar a conta corrente e poupança
         self.__email = email
         
 
-class Conta_Corrente(Conta, Operacoes_Financeiras): # Conta corrente que herda de Conta e Operacoes_Financeiras
+class Conta_Corrente(Conta, Operacoes_Financeiras): # Conta corrente que herda de Conta e Operacoes_Financeiras (Classe abstrata)
     pass
 
-class Conta_Poupanca(Conta, Operacoes_Financeiras): # Conta corrente que herda de Conta e Operacoes_Financeiras
+class Conta_Poupanca(Conta, Operacoes_Financeiras): # Conta corrente que herda de Conta e Operacoes_Financeiras (Classe abstrata)
     pass
 
-class Extrato: # classe que "cuidara" do extrato
+class Extrato: # classe que vai gerenciar o extrato
     pass
