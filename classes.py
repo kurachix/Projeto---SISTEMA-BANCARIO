@@ -103,22 +103,36 @@ class Conta(Operacoes_Financeiras, ABC): # Classe abstrata para gerenciar a cont
     def getExtrato(self):
         return self.__extrato 
     
-class Conta_Corrente(Conta, Operacoes_Financeiras): # Conta corrente que herda de Conta e Operacoes_Financeiras (Classe abstrata)
-    def __init__(self, id_cliente, nome, cpf, senha, email, saldo_corrente, depositar, sacar, transferencia):
-        super().__init__(id_cliente, nome, cpf, senha, email, depositar, sacar, transferencia)
-        self.__saldo_corrente = saldo_corrente
+    def __str__(self):
+        return f"Conta {self.__id_conta} - Titular: {self.__cliente.getNome()}"
+    
+class Conta_Corrente(Conta): # Conta corrente que herda de Conta.
+    def __init__(self, id_conta: str, cliente: Cliente):
+        super().__init__(id_conta, cliente)
 
-    def sacar(self, valor):
-        pass
+    def sacar(self, valor: float):
+        if valor <= 0:
+            raise ValueError("Valor Inválido!")
+        if valor > self._saldo:
+            raise ValueError("Saldo insuficiente para essa transação")
+        self._saldo -= valor
+        self.getExtrato().adicionar_transacao("Saque -", -valor)
 
-    def depositar(self, valor):
-        pass
-
-    def transferencia(self, destino, valor):
-        pass
-
-    def getSaldoCorrente(self):
-        return self.__saldo_corrente
+    def depositar(self, valor: float):
+        if valor > 0:
+            self._saldo += valor
+            self.getExtrato().adicionar_transacao("Depósito -", valor )
+        else:
+            #Força um erro, porque nao faz sentido depositar valor negativo ou zero
+            raise ValueError("Valor de depósito inválido.") 
+        
+    def transferencia(self, destino, valor : float):
+        if valor <= 0 or valor > self._saldo:
+            raise ValueError("Não foi possivel concluir essa transação pois ela é Inválida!")
+        self.sacar(valor)
+        destino.depositar(valor)
+        self.getExtrato().adicionar_transacao(
+            f"Transferencia para {destino.getCliente().getNome()}", - valor)
 
 class Conta_Poupanca(Conta, Operacoes_Financeiras): # Conta corrente que herda de Conta e Operacoes_Financeiras (Classe abstrata)
     def __init__(self, id_cliente, nome, cpf, senha, email, saldo_poupanca, depositar, sacar, transferencia):
