@@ -3,7 +3,6 @@
 from classes import * # importa todas as classes para o arquivo de funções 
 import time # importa a bibliotaca time, para adicionar pausar ao longo do codigo
 import os # importa a  biblioteca os, para limpar o terminal e pausa-lo ao longo do codigo
-from datetime import datetime
 
 # ---------------------------------------------------------------------------------------------------------------- #
 

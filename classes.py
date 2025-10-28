@@ -1,5 +1,5 @@
 # Arquivo para armazenar as classes do projeto
-
+from datetime import datetime
 from abc import ABC, abstractmethod
 
 # Classe que representa o banco 
@@ -167,11 +167,15 @@ class Conta_Poupanca(Conta): # Conta corrente que herda de Conta.
 class Extrato: # classe que vai gerenciar o extrato
     def __init__(self):
         self.__transacoes = []
-
-    def adicionar_transacao(self, descricao, valor):
-        self.__transacoes.append((descricao, valor))
+        
+    def adicionar_transacao(self, descricao : str, valor : float):
+        data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        self.__transacoes.append((data ,descricao, valor))
 
     def get_transacoes(self):
         return self.__transacoes
 
-
+    def mostrar_extrato(self):
+        print("Extrato")
+        for data, descricao, valor in self.__transacoes:
+            print(f"{data} - {descricao}: R${valor:.2f}")
