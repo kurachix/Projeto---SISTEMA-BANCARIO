@@ -123,8 +123,8 @@ def cadastrar_cliente(banco: Banco):
     banco.adicionar_cliente(novo_cliente)
 
     limpar_terminal()
-    print(f"✅ Cliente {nome} cadastrado com sucesso!")
-    print(f"🏦 Conta {tipo_conta.title()} criada automaticamente: {nova_conta.getIdConta()}")
+    print(f" Cliente {nome} cadastrado com sucesso!")
+    print(f" Conta {tipo_conta.title()} criada automaticamente: {nova_conta.getIdConta()}")
     espera_terminal()
 
 
