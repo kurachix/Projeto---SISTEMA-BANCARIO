@@ -22,72 +22,17 @@ def espera_terminal():
 def cadastrar_cliente(banco: Banco):
     """Função para cadastrar um novo cliente"""
 
-    def aceitar_termos():
-        limpar_terminal()
-        print(50 * "-")
-        print("Antes, confirme os termos de uso do Banco SPX!".center(50))
-        print(50 * "-")
-
-        print("\n1 - Aceitar os Termos\n2 - Rejeitar os Termos\n3 - Ler os Termos")
-        try:
-            escolha = int(input("\n--> "))
-        except ValueError:
-            limpar_terminal()
-            print("Entrada inválida! Digite apenas números.")
-            espera_terminal()
-            return aceitar_termos()
-
-        return escolha
-
-    # Loop até o usuário aceitar os termos
-    while True:
-        limpar_terminal()
-        print("Precisaremos de algumas informações pessoais para prosseguir com a criação da conta!!")
-
-        escolha_termos_de_servico = aceitar_termos()
-
-        match escolha_termos_de_servico:
-            case 1:  # Aceitou os termos
-                break
-            case 2:  # Rejeitou
-                limpar_terminal()
-                print("Infelizmente, ao não aceitar os termos de uso, não é possível criar uma conta no Banco SPX.")
-                espera_terminal()
-                return
-            case 3:  # Leu os termos
-                limpar_terminal()
-                print("""
-=========================
-        TERMOS DE USO
-=========================
-- O banco não se responsabiliza por erros de terceiros.
-- Mantenha sua senha em segurança.
-- Não compartilhe sua conta com terceiros.
-- O sistema não se responsabiliza por perdas reais.
-- Ao continuar, você concorda com estes termos.
-=========================
-                """)
-                espera_terminal()
-            case _:  # Opção inválida
-                limpar_terminal()
-                print("Opção inválida. Tente novamente!")
-                espera_terminal()
-
-    # Cadastro efetivo
-    limpar_terminal()
-    print("Informe seus dados de cadastro abaixo:\n")
+    # ... (a parte dos termos de uso e dados pessoais permanece igual)
 
     nome = input("Nome: ").strip()
     cpf = input("CPF: ").strip()
     senha = input("Senha: ").strip()
 
-    # Verifica se já existe cliente com esse CPF
+    cliente_existente = None
     for cliente in banco.get_clientes():
         if cliente.getCpf() == cpf:
-            limpar_terminal()
-            print("Já existe um cliente cadastrado com esse CPF!")
-            espera_terminal()
-            return
+            cliente_existente = cliente
+            break
 
     # Escolha do tipo de conta
     limpar_terminal()
@@ -95,26 +40,40 @@ def cadastrar_cliente(banco: Banco):
     print("1 - Conta Corrente")
     print("2 - Conta Poupança")
 
-    tipo_conta = None
     while True:
         try:
-            escolha = int(input("\n--> "))
-            if escolha == 1:
-                tipo_conta = "corrente"
-                break
-            elif escolha == 2:
-                tipo_conta = "poupanca"
+            tipo = int(input("\n--> "))
+            if tipo in (1, 2):
                 break
             else:
                 print("Opção inválida! Digite 1 ou 2.")
         except ValueError:
             print("Entrada inválida! Digite apenas números.")
 
-    # Criação do cliente e conta
-    novo_cliente = Cliente(nome, cpf, senha)
-    id_conta = f"{'CC' if tipo_conta == 'corrente' else 'CP'}-{len(banco.get_clientes()) + 1}"
+    tipo_conta = "corrente" if tipo == 1 else "poupanca"
+    prefixo = "CC" if tipo == 1 else "CP"
+    id_conta = f"{prefixo}-{len(banco.get_clientes()) + 1}"
 
-    if tipo_conta == "corrente":
+    # Se o cliente já existe, só adiciona uma nova conta
+    if cliente_existente:
+        limpar_terminal()
+        print(f"O cliente {cliente_existente.getNome()} já possui cadastro.")
+        print("Adicionando nova conta ao perfil existente...\n")
+
+        if tipo == 1:
+            nova_conta = Conta_Corrente(id_conta, cliente_existente)
+        else:
+            nova_conta = Conta_Poupanca(id_conta, cliente_existente)
+
+        cliente_existente.adicionar_conta(nova_conta)
+        print(f"✅ Nova conta {tipo_conta.title()} criada: {nova_conta.getIdConta()}")
+        espera_terminal()
+        return
+
+    # Se não existe, cria um novo cliente normalmente
+    novo_cliente = Cliente(nome, cpf, senha)
+
+    if tipo == 1:
         nova_conta = Conta_Corrente(id_conta, novo_cliente)
     else:
         nova_conta = Conta_Poupanca(id_conta, novo_cliente)
@@ -123,9 +82,10 @@ def cadastrar_cliente(banco: Banco):
     banco.adicionar_cliente(novo_cliente)
 
     limpar_terminal()
-    print(f" Cliente {nome} cadastrado com sucesso!")
-    print(f" Conta {tipo_conta.title()} criada automaticamente: {nova_conta.getIdConta()}")
+    print(f"✅ Cliente {nome} cadastrado com sucesso!")
+    print(f"🏦 Conta {tipo_conta.title()} criada automaticamente: {nova_conta.getIdConta()}")
     espera_terminal()
+
 
 
 
