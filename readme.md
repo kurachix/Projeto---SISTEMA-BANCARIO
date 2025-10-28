@@ -55,7 +55,7 @@ O objetivo do projeto é **demonstrar a aplicação prática dos princípios da 
 
 ## 💾 Classes e Responsabilidades
 
-![Imagem referente ao Diagrama de Classes.](images/diagrama_de_classes.jpeg)
+![Imagem do diagrama de classes](https://github.com/user-attachments/assets/289e58b7-e5de-4497-83d9-7320964f452e)
 
 ### 🏦 `class Banco`
 - **Responsabilidade:** representar o banco em si e gerenciar seus clientes.
