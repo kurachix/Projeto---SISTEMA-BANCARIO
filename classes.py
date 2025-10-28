@@ -76,7 +76,7 @@ class Operacoes_Financeiras(ABC): # Interface de padronização para operações
 class Conta: # Classe abstrata para gerenciar a conta corrente e poupança
     def __init__(self, id_cliente, nome, cpf, senha, email):
         
-        self.__id_cliente - id_cliente
+        self.__id_cliente = id_cliente
         self.__nome = nome
         self.__cpf = cpf
         self.__senha = senha
@@ -142,6 +142,12 @@ class Conta_Poupanca(Conta, Operacoes_Financeiras): # Conta corrente que herda d
 
 class Extrato: # classe que vai gerenciar o extrato
     def __init__(self):
-        pass
+        self.__transacoes = []
+
+    def adicionar_transacao(self, descricao, valor):
+        self.__transacoes.append((descricao, valor))
+
+    def get_transacoes(self):
+        return self.__transacoes
 
 
