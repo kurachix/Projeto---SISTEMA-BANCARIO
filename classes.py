@@ -34,7 +34,25 @@ class Banco:
         return self.__clientes
 
 class Cliente: # Classe pasa gerenciar as ações do cliente
-    pass
+    def __init__(self, nome : str, cpf : str, senha : str):
+        self.__nome = nome
+        self.__cpf = cpf
+        self.__senha = senha
+
+    def getNome(self):
+        return self.__nome
+    def getCpf(self):
+        return self.__cpf
+    def getSenha(self):
+        return self.__senha
+    
+    def setNome(self, nome):
+        self.__nome = nome
+    def setCpf(self,cpf):
+        self.__cpf = cpf
+    def setSenha(self, senha):
+        self.__senha = senha 
+
 
 class Operacoes_Financeiras(ABC): # Interface de padronização para operações financeiras
 
