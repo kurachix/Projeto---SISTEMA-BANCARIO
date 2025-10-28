@@ -71,11 +71,12 @@ while True:
                 print("=== SAQUE ===")
                 try:
                     valor = float(input("Informe o valor a sacar: R$"))
-                    conta = cliente_logado._Cliente__contas[0]
+                    #cliente_logado representa o usuário logado no sistema.
+                    conta = cliente_logado._Cliente__contas[0] # pega a primeira conta do cliente.
                     conta.sacar(valor)
                     limpar_terminal()
                     print(f"Saque de R${valor:.2f} realizado com sucesso!")
-                except ValueError as e:
+                except ValueError as e :
                     limpar_terminal()
                     print(f"Erro: {e}")
                 espera_terminal()

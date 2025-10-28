@@ -115,7 +115,7 @@ class Conta_Corrente(Conta): # Conta corrente que herda de Conta.
 
     def sacar(self, valor: float):
         if valor <= 0:
-            raise ValueError("Valor Inválido!")
+            raise ValueError("Valor Inválido!") #com o raise lançamos um erro, do tipo ValueError( Erro para valores invalidos)
         if valor > self._saldo:
             raise ValueError("Saldo insuficiente para essa transação")
         self._saldo -= valor
@@ -161,6 +161,7 @@ class Conta_Poupanca(Conta): # Conta corrente que herda de Conta.
             self._saldo += valor
             self.getExtrato().adicionar_transacao("Depósito -", valor)
         else:
+            #Força um erro pois é maluquice depositar um valor menor que zero, né carlinho!
             raise ValueError("Valor de deposito invalido!")
 
     def transferir(self, conta_destino, valor):

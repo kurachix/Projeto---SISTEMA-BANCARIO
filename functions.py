@@ -9,7 +9,7 @@ import os
 
 def limpar_terminal():
     """Limpa o terminal"""
-    os.system("cls" if os.name == "nt" else "clear")
+    os.system("cls")
 
 
 def espera_terminal():
@@ -79,7 +79,7 @@ def cadastrar_cliente(banco: Banco):
 
     nome = input("Nome: ").strip()
     cpf = input("CPF: ").strip()
-    senha = input("Senha: ").strip()
+    senha = input("Senha: ").strip() #.strip ele tira os espaços em branco
 
     # Verifica se já existe cliente com esse CPF
     for cliente in banco.get_clientes():
@@ -96,8 +96,8 @@ def cadastrar_cliente(banco: Banco):
     banco.adicionar_cliente(novo_cliente)
 
     limpar_terminal()
-    print(f"✅ Cliente {nome} cadastrado com sucesso!")
-    print(f"💳 Conta criada automaticamente: {nova_conta.getIdConta()}")
+    print(f"Cliente {nome} cadastrado com sucesso!")
+    print(f"Conta criada automaticamente: {nova_conta.getIdConta()}")
     espera_terminal()
 
 # ---------------------------------------------------------------------------------------------------------------- #
@@ -106,7 +106,7 @@ def login_cliente(banco: Banco):
     """Função para realizar o login de um cliente"""
     limpar_terminal()
     print("=== LOGIN ===\n")
-    cpf = input("CPF: ").strip()
+    cpf = input("CPF: ").strip() #.strip retirar os espaços em branco
     senha = input("Senha: ").strip()
 
     # Verifica nos clientes do banco
@@ -118,7 +118,7 @@ def login_cliente(banco: Banco):
             return cliente
 
     limpar_terminal()
-    print("❌ CPF ou senha incorretos.")
+    print(" CPF ou senha incorretos.")
     espera_terminal()
     return None
 
@@ -135,7 +135,7 @@ def tela_inicio():
     print("O seu banco digital de confiança.\n")
 
     print("Carregando", end="")
-    for _ in range(9):
+    for _ in range(5):
         print(".", end="", flush=True)
         time.sleep(0.4)
     print("\n")
