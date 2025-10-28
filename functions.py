@@ -39,7 +39,7 @@ def cadastrar_cliente(banco: Banco):
 
         return escolha
 
-    # --------------------------- TERMOS DE USO --------------------------- #
+    # Loop até o usuário aceitar os termos
     while True:
         limpar_terminal()
         print("Precisaremos de algumas informações pessoais para prosseguir com a criação da conta!!")
@@ -73,13 +73,13 @@ def cadastrar_cliente(banco: Banco):
                 print("Opção inválida. Tente novamente!")
                 espera_terminal()
 
-    # --------------------------- DADOS DO CLIENTE --------------------------- #
+    # Cadastro efetivo
     limpar_terminal()
     print("Informe seus dados de cadastro abaixo:\n")
 
     nome = input("Nome: ").strip()
     cpf = input("CPF: ").strip()
-    senha = input("Senha: ").strip()  # .strip() remove espaços em branco
+    senha = input("Senha: ").strip()
 
     # Verifica se já existe cliente com esse CPF
     for cliente in banco.get_clientes():
@@ -89,42 +89,44 @@ def cadastrar_cliente(banco: Banco):
             espera_terminal()
             return
 
-    # --------------------------- TIPO DE CONTA --------------------------- #
+    # Escolha do tipo de conta
     limpar_terminal()
-    print("=== ESCOLHA O TIPO DE CONTA ===")
+    print("Escolha o tipo de conta que deseja criar:\n")
     print("1 - Conta Corrente")
     print("2 - Conta Poupança")
 
     tipo_conta = None
-    while tipo_conta not in (1, 2):
+    while True:
         try:
-            tipo_conta = int(input("\nDigite o número da opção desejada: "))
-            if tipo_conta not in (1, 2):
-                print("Opção inválida! Escolha 1 ou 2.")
+            escolha = int(input("\n--> "))
+            if escolha == 1:
+                tipo_conta = "corrente"
+                break
+            elif escolha == 2:
+                tipo_conta = "poupanca"
+                break
+            else:
+                print("Opção inválida! Digite 1 ou 2.")
         except ValueError:
-            print("Digite apenas números!")
+            print("Entrada inválida! Digite apenas números.")
 
-    # Cria o cliente e adiciona ao banco
+    # Criação do cliente e conta
     novo_cliente = Cliente(nome, cpf, senha)
+    id_conta = f"{'CC' if tipo_conta == 'corrente' else 'CP'}-{len(banco.get_clientes()) + 1}"
 
-    if tipo_conta == 1:
-        nova_conta = Conta_Corrente(f"CC-{len(banco.get_clientes()) + 1}", novo_cliente)
-        tipo_nome = "Conta Corrente"
+    if tipo_conta == "corrente":
+        nova_conta = Conta_Corrente(id_conta, novo_cliente)
     else:
-        nova_conta = Conta_Poupanca(f"CP-{len(banco.get_clientes()) + 1}", novo_cliente)
-        tipo_nome = "Conta Poupança"
+        nova_conta = Conta_Poupanca(id_conta, novo_cliente)
 
     novo_cliente.adicionar_conta(nova_conta)
     banco.adicionar_cliente(novo_cliente)
 
-    # --------------------------- FINALIZAÇÃO --------------------------- #
     limpar_terminal()
-    print("=========================================")
-    print(f"🎉 Cliente {nome} cadastrado com sucesso! 🎉")
-    print(f"Tipo de conta: {tipo_nome}")
-    print(f"Número da conta: {nova_conta.getIdConta()}")
-    print("=========================================")
+    print(f"✅ Cliente {nome} cadastrado com sucesso!")
+    print(f"🏦 Conta {tipo_conta.title()} criada automaticamente: {nova_conta.getIdConta()}")
     espera_terminal()
+
 
 
 # ---------------------------------------------------------------------------------------------------------------- #
