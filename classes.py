@@ -103,18 +103,6 @@ class Conta(Operacoes_Financeiras, ABC): # Classe abstrata para gerenciar a cont
     def getExtrato(self):
         return self.__extrato 
     
-    def setNome(self, nome):
-        self.__nome = nome
-    
-    def setCpf(self, cpf):
-        self.__cpf = cpf
-    
-    def setSenha(self, senha):
-        self.__senha = senha
-    
-    def setEmail(self, email):
-        self.__email = email
-
 class Conta_Corrente(Conta, Operacoes_Financeiras): # Conta corrente que herda de Conta e Operacoes_Financeiras (Classe abstrata)
     def __init__(self, id_cliente, nome, cpf, senha, email, saldo_corrente, depositar, sacar, transferencia):
         super().__init__(id_cliente, nome, cpf, senha, email, depositar, sacar, transferencia)
