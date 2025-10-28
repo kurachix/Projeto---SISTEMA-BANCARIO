@@ -32,11 +32,6 @@ class Banco:
     def get_clientes(self):
         # retorna a lista de clientes
         return self.__clientes
-    
-        # Métodos principais
-
-    def adicionar_cliente(self, cliente):
-        self.__clientes.append(cliente)
 
 class Cliente: # Classe pasa gerenciar as ações do cliente
     def __init__(self, nome : str, cpf : str, senha : str):
@@ -46,15 +41,19 @@ class Cliente: # Classe pasa gerenciar as ações do cliente
 
     def getNome(self):
         return self.__nome
+    
     def getCpf(self):
         return self.__cpf
+    
     def getSenha(self):
         return self.__senha
     
     def setNome(self, nome):
         self.__nome = nome
+
     def setCpf(self,cpf):
         self.__cpf = cpf
+
     def setSenha(self, senha):
         self.__senha = senha 
 
@@ -81,15 +80,39 @@ class Conta: # Classe abstrata para gerenciar a conta corrente e poupança
         self.__nome = nome
         self.__cpf = cpf
         self.__senha = senha
-
         self.__email = email
-        
 
-class Conta_Corrente(Conta, Operacoes_Financeiras): # Conta corrente que herda de Conta e Operacoes_Financeiras (Classe abstrata)
+    def getNome(self):
+        return self.__nome
+    
+    def getCpf(self):
+        return self.__cpf
+    
+    def getSenha(self):
+        return self.__senha
+    
+    def getEmail(self):
+        return self.__email 
+    
+    def setNome(self, nome):
+        self.__nome = nome
+    
+    def setCpf(self, cpf):
+        self.__cpf = cpf
+    
+    def setSenha(self, senha):
+        self.__senha = senha
+    
+    def setEmail(self, email):
+        self.__email = email
+
+class Conta_Corrente(Conta, Operacoes_Financeiras): # Conta corrente que herda de Conta e Operacoes_Financeiras
     pass
 
-class Conta_Poupanca(Conta, Operacoes_Financeiras): # Conta corrente que herda de Conta e Operacoes_Financeiras (Classe abstrata)
+class Conta_Poupanca(Conta, Operacoes_Financeiras): # Conta corrente que herda de Conta e Operacoes_Financeiras
     pass
 
-class Extrato: # classe que vai gerenciar o extrato
+class Extrato: # classe que "cuidara" do extrato
     pass
+
+
