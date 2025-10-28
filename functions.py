@@ -157,6 +157,7 @@ def menu_principal():
     print("5 - Alterar informações da conta")
     print("6 - Sair da conta")
     print("7 - Finalizar o software")
+    print("8 - Transferencia")
 
     print("\n" + 30 * "-")
 
