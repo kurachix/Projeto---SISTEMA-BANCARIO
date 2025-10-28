@@ -72,7 +72,7 @@ while True:
                 try:
                     valor = float(input("Informe o valor a sacar: R$"))
                     #cliente_logado representa o usuário logado no sistema.
-                    conta = cliente_logado._Cliente__contas[0] # pega a primeira conta do cliente.
+                    conta = cliente_logado.conta_ativa
                     conta.sacar(valor)
                     limpar_terminal()
                     print(f"Saque de R${valor:.2f} realizado com sucesso!")
@@ -87,7 +87,7 @@ while True:
                 print("=== DEPÓSITO ===")
                 try:
                     valor = float(input("Informe o valor a depositar: R$"))
-                    conta = cliente_logado.getContas()[0]
+                    conta = cliente_logado.conta_ativa
                     conta.depositar(valor)
                     limpar_terminal()
                     print(f"Depósito de R${valor:.2f} realizado com sucesso!")
