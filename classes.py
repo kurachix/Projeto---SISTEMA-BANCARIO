@@ -167,10 +167,10 @@ class Conta_Poupanca(Conta): # Conta corrente que herda de Conta.
     def transferir(self, conta_destino, valor):
         if valor <= 0:
             raise ValueError("Valor inválido para transferência.")
-        if valor > self.__saldo:
+        if valor > self._saldo:
             raise ValueError("Saldo insuficiente para transferência.")
 
-        self.__saldo -= valor
+        self._saldo -= valor
         conta_destino.depositar(valor)
         self.getExtrato().adicionar_transacao(f"Transferência enviada -", -valor)
         conta_destino.getExtrato().adicionar_transacao(f"Transferência recebida -", valor)
